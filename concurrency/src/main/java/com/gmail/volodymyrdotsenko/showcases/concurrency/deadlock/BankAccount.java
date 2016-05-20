@@ -35,9 +35,11 @@ public class BankAccount {
     }
 
     static void transfer(BankAccount from, BankAccount to, double amount) {
+        System.out.println("Try lock account " + from.id);
         synchronized (from) {
             System.out.println("Lock account " + from.id);
             from.withdraw(amount);
+            System.out.println("Try lock account " + to.id);
             synchronized (to) {
                 System.out.println("Lock account " + to.id);
                 to.deposit(amount);
