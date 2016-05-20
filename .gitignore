@@ -13,4 +13,3 @@ classes/
 nimble-cli/*.log
 *.log
 .DS_Store
-release/nimble-cli/
