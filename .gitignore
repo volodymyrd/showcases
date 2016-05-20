@@ -1,0 +1,16 @@
+*/.settings/*
+*/.classpath
+*/.project
+*/target/*
+.gradle
+*/build/*
+*/bin/*
+*/.gitignore
+node_modules
+.sass-cache
+.idea/
+classes/
+nimble-cli/*.log
+*.log
+.DS_Store
+release/nimble-cli/
