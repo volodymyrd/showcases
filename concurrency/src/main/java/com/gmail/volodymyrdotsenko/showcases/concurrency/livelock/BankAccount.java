@@ -2,6 +2,8 @@ package com.gmail.volodymyrdotsenko.showcases.concurrency.livelock;
 
 /**
  * Created by Volodymyr Dotsenko on 5/20/16.
+ *
+ * https://richardbarabe.wordpress.com/2014/02/21/java-deadlock-livelock-and-lock-starvation-examples/
  */
 
 import java.util.concurrent.locks.Lock;
