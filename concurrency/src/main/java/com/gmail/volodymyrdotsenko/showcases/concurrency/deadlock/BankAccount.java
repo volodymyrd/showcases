@@ -12,36 +12,36 @@ public class BankAccount {
         this.balance = balance;
     }
 
-    void withdraw(double amount) {
+    private void withdraw(double amount) {
         // Wait to simulate io like database access ...
-        System.out.println("Start withdraw...");
+        System.out.println(Thread.currentThread().getName() + ": Account id:" + id + " Start withdraw...");
         try {
             Thread.sleep(10l);
         } catch (InterruptedException e) {
         }
         balance -= amount;
-        System.out.println("Withdraw finished");
+        System.out.println(Thread.currentThread().getName() + ": Account id:" + id + " Withdraw finished");
     }
 
-    void deposit(double amount) {
+    private void deposit(double amount) {
         // Wait to simulate io like database access ...
-        System.out.println("Start deposit...");
+        System.out.println(Thread.currentThread().getName() + ": Account id:" + id + " Start deposit...");
         try {
             Thread.sleep(10l);
         } catch (InterruptedException e) {
         }
         balance += amount;
-        System.out.println("Deposit finished");
+        System.out.println(Thread.currentThread().getName() + ": Account id:" + id + " Deposit finished");
     }
 
-    static void transfer(BankAccount from, BankAccount to, double amount) {
-        System.out.println("Try lock account " + from.id);
+    private static void transfer(BankAccount from, BankAccount to, double amount) {
+        System.out.println(Thread.currentThread().getName() + ": Try lock account " + from.id);
         synchronized (from) {
-            System.out.println("Lock account " + from.id);
+            System.out.println(Thread.currentThread().getName() + ": Lock account " + from.id);
             from.withdraw(amount);
-            System.out.println("Try lock account " + to.id);
+            System.out.println(Thread.currentThread().getName() + ": Try lock account " + to.id);
             synchronized (to) {
-                System.out.println("Lock account " + to.id);
+                System.out.println(Thread.currentThread().getName() + ": Lock account " + to.id);
                 to.deposit(amount);
             }
         }
@@ -53,14 +53,14 @@ public class BankAccount {
 
         new Thread() {
             public void run() {
-                System.out.println("Start transfer from " + fooAccount.id + " to " + barAccount.id);
+                System.out.println(Thread.currentThread().getName() + ": Start transfer from " + fooAccount.id + " to " + barAccount.id);
                 BankAccount.transfer(fooAccount, barAccount, 10d);
             }
         }.start();
 
         new Thread() {
             public void run() {
-                System.out.println("Start transfer from " + barAccount.id + " to " + fooAccount.id);
+                System.out.println(Thread.currentThread().getName() + ": Start transfer from " + barAccount.id + " to " + fooAccount.id);
                 BankAccount.transfer(barAccount, fooAccount, 10d);
             }
         }.start();
