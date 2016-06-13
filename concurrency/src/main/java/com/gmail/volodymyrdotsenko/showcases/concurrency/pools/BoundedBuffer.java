@@ -8,7 +8,7 @@ import java.util.concurrent.Semaphore;
 public class BoundedBuffer<E> {
     private final Semaphore availableItems, availableSpaces;
     private final E[] items;
-    private int putPosition, takePosition = 0;
+    private int putPosition, takePosition;
 
     public BoundedBuffer(int capacity) {
         this.availableItems = new Semaphore(0);
