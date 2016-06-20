@@ -1,3 +1,4 @@
 dependencies {
-    testCompile libs.test
+    compile libs.boot_starter_aop
+    testCompile libs.boot_starter_test
 }
